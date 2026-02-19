@@ -1,4 +1,4 @@
-import { Search, Zap, BellRing, ShieldCheck } from "lucide-react";
+import { Search, ShieldAlert, BellRing, ShieldCheck } from "lucide-react";
 import AnimatedSection from "./AnimatedSection";
 
 const features = [
@@ -8,9 +8,9 @@ const features = [
     desc: "Find items by category, location, date, or keyword in seconds.",
   },
   {
-    icon: Zap,
-    title: "Auto Match System",
-    desc: "AI-powered matching connects lost reports with found items automatically.",
+    icon: ShieldAlert,
+    title: "No Fake Claims",
+    desc: "Verified NetID login and claim validation ensure only legitimate owners recover items.",
   },
   {
     icon: BellRing,
