@@ -62,6 +62,7 @@ const ReportForm = () => {
               </motion.div>
             ) : (
               <form onSubmit={handleSubmit} className="space-y-5">
+                {/* Item Name - both forms */}
                 <div>
                   <label className="block text-sm font-medium text-foreground mb-1.5">Item Name</label>
                   <input
@@ -72,57 +73,76 @@ const ReportForm = () => {
                   />
                 </div>
 
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-                  <div>
-                    <label className="block text-sm font-medium text-foreground mb-1.5">Category</label>
-                    <select
-                      required
-                      className="w-full rounded-xl border border-input bg-background px-4 py-3 text-sm text-foreground focus:outline-none focus:ring-2 focus:ring-ring"
-                    >
-                      <option value="">Select category</option>
-                      {categories.map((c) => (
-                        <option key={c} value={c}>{c}</option>
-                      ))}
-                    </select>
+                {type === "found" ? (
+                  /* FOUND ITEM: Name, Category, Location */
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                    <div>
+                      <label className="block text-sm font-medium text-foreground mb-1.5">Category</label>
+                      <select
+                        required
+                        className="w-full rounded-xl border border-input bg-background px-4 py-3 text-sm text-foreground focus:outline-none focus:ring-2 focus:ring-ring"
+                      >
+                        <option value="">Select category</option>
+                        {categories.map((c) => (
+                          <option key={c} value={c}>{c}</option>
+                        ))}
+                      </select>
+                    </div>
+                    <div>
+                      <label className="block text-sm font-medium text-foreground mb-1.5">Location</label>
+                      <select
+                        required
+                        className="w-full rounded-xl border border-input bg-background px-4 py-3 text-sm text-foreground focus:outline-none focus:ring-2 focus:ring-ring"
+                      >
+                        <option value="">Select location</option>
+                        {locations.map((l) => (
+                          <option key={l} value={l}>{l}</option>
+                        ))}
+                      </select>
+                    </div>
                   </div>
-                  <div>
-                    <label className="block text-sm font-medium text-foreground mb-1.5">Location</label>
-                    <select
-                      required
-                      className="w-full rounded-xl border border-input bg-background px-4 py-3 text-sm text-foreground focus:outline-none focus:ring-2 focus:ring-ring"
-                    >
-                      <option value="">Select location</option>
-                      {locations.map((l) => (
-                        <option key={l} value={l}>{l}</option>
-                      ))}
-                    </select>
-                  </div>
-                </div>
+                ) : (
+                  /* LOST ITEM: Name, Location, Description, Upload Image */
+                  <>
+                    <div>
+                      <label className="block text-sm font-medium text-foreground mb-1.5">Location</label>
+                      <select
+                        required
+                        className="w-full rounded-xl border border-input bg-background px-4 py-3 text-sm text-foreground focus:outline-none focus:ring-2 focus:ring-ring"
+                      >
+                        <option value="">Select location</option>
+                        {locations.map((l) => (
+                          <option key={l} value={l}>{l}</option>
+                        ))}
+                      </select>
+                    </div>
 
-                <div>
-                  <label className="block text-sm font-medium text-foreground mb-1.5">Description</label>
-                  <textarea
-                    rows={3}
-                    placeholder="Describe the item in detail..."
-                    className="w-full rounded-xl border border-input bg-background px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring resize-none"
-                  />
-                </div>
+                    <div>
+                      <label className="block text-sm font-medium text-foreground mb-1.5">Description</label>
+                      <textarea
+                        rows={3}
+                        placeholder="Describe the item in detail..."
+                        className="w-full rounded-xl border border-input bg-background px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring resize-none"
+                      />
+                    </div>
 
-                <div>
-                  <label className="block text-sm font-medium text-foreground mb-1.5">Upload Image</label>
-                  <label className="flex flex-col items-center justify-center w-full h-28 rounded-xl border-2 border-dashed border-input bg-background cursor-pointer hover:border-primary/40 transition-colors">
-                    <Upload className="w-6 h-6 text-muted-foreground mb-1" />
-                    <span className="text-sm text-muted-foreground">Click to upload</span>
-                    <input type="file" accept="image/*" className="hidden" />
-                  </label>
-                </div>
+                    <div>
+                      <label className="block text-sm font-medium text-foreground mb-1.5">Upload Image</label>
+                      <label className="flex flex-col items-center justify-center w-full h-28 rounded-xl border-2 border-dashed border-input bg-background cursor-pointer hover:border-primary/40 transition-colors">
+                        <Upload className="w-6 h-6 text-muted-foreground mb-1" />
+                        <span className="text-sm text-muted-foreground">Click to upload</span>
+                        <input type="file" accept="image/*" className="hidden" />
+                      </label>
+                    </div>
+                  </>
+                )}
 
                 <button
                   type="submit"
                   className="w-full py-3.5 rounded-xl bg-primary text-primary-foreground font-bold text-base hover:opacity-90 transition-opacity flex items-center justify-center gap-2"
                 >
                   <Send className="w-5 h-5" />
-                  Submit Report
+                  {type === "lost" ? "Submit Lost Report" : "Submit Found Report"}
                 </button>
               </form>
             )}
