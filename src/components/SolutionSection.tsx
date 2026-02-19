@@ -1,24 +1,24 @@
-import { FileText, Scan, Bell } from "lucide-react";
+import { LogIn, FileText, PackageCheck } from "lucide-react";
 import AnimatedSection from "./AnimatedSection";
 
 const steps = [
   {
-    icon: FileText,
+    icon: LogIn,
     step: "01",
-    title: "Report It",
-    desc: "Submit a quick form describing your lost or found item with details and a photo.",
+    title: "Log In with UIS NetID",
+    desc: "Sign in securely using your University of Illinois Springfield NetID credentials.",
   },
   {
-    icon: Scan,
+    icon: FileText,
     step: "02",
-    title: "We Match It",
-    desc: "Our smart matching engine compares reports and finds potential matches instantly.",
+    title: "Report It",
+    desc: "Fill out a quick form describing your lost or found item with details and a photo.",
   },
   {
-    icon: Bell,
+    icon: PackageCheck,
     step: "03",
-    title: "Get Notified",
-    desc: "Receive an instant alert when a match is found. Reconnect with your item easily.",
+    title: "Claim It",
+    desc: "Browse reported items, find yours, and submit a claim to get it back.",
   },
 ];
 
