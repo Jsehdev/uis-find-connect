@@ -19,6 +19,9 @@ const ProblemSection = () => {
   const [filter, setFilter] = useState<"all" | "lost" | "found">("all");
   const [selectedItem, setSelectedItem] = useState<typeof sampleItems[0] | null>(null);
   const [requested, setRequested] = useState(false);
+  const [claimDescription, setClaimDescription] = useState("");
+  const [claimDate, setClaimDate] = useState("");
+  const [claimEmail, setClaimEmail] = useState("");
 
   const filtered = sampleItems.filter((item) => {
     const matchesSearch =
@@ -33,6 +36,9 @@ const ProblemSection = () => {
     setTimeout(() => {
       setRequested(false);
       setSelectedItem(null);
+      setClaimDescription("");
+      setClaimDate("");
+      setClaimEmail("");
     }, 2500);
   };
 
@@ -196,12 +202,49 @@ const ProblemSection = () => {
                       </div>
                     </div>
 
+                    <div className="space-y-3 mb-6">
+                      <div>
+                        <label className="text-sm font-medium text-foreground mb-1 block">Your Email</label>
+                        <input
+                          type="email"
+                          value={claimEmail}
+                          onChange={(e) => setClaimEmail(e.target.value)}
+                          placeholder="your.email@uis.edu"
+                          className="w-full rounded-xl border border-input bg-card px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring"
+                        />
+                      </div>
+                      <div>
+                        <label className="text-sm font-medium text-foreground mb-1 block">
+                          {selectedItem.type === "found" ? "Describe the item to verify ownership" : "Describe where/when you found it"}
+                        </label>
+                        <textarea
+                          value={claimDescription}
+                          onChange={(e) => setClaimDescription(e.target.value)}
+                          placeholder={selectedItem.type === "found" ? "Describe unique details only the owner would know..." : "Describe where and how you found this item..."}
+                          rows={3}
+                          className="w-full rounded-xl border border-input bg-card px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring resize-none"
+                        />
+                      </div>
+                      <div>
+                        <label className="text-sm font-medium text-foreground mb-1 block">
+                          {selectedItem.type === "found" ? "When did you lose it?" : "When did you find it?"}
+                        </label>
+                        <input
+                          type="date"
+                          value={claimDate}
+                          onChange={(e) => setClaimDate(e.target.value)}
+                          className="w-full rounded-xl border border-input bg-card px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring"
+                        />
+                      </div>
+                    </div>
+
                     <button
                       onClick={handleRequest}
-                      className="w-full py-3.5 rounded-xl bg-primary text-primary-foreground font-bold text-base hover:opacity-90 transition-opacity flex items-center justify-center gap-2"
+                      disabled={!claimEmail || !claimDescription || !claimDate}
+                      className="w-full py-3.5 rounded-xl bg-primary text-primary-foreground font-bold text-base hover:opacity-90 transition-opacity flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
                     >
                       <Send className="w-5 h-5" />
-                      Request This Item
+                      {selectedItem.type === "found" ? "Request This Item" : "I Found This Item"}
                     </button>
                     <p className="text-xs text-muted-foreground text-center mt-3">
                       Requires UIS NetID verification
