@@ -1,4 +1,4 @@
-import { LogIn, FileText, PackageCheck } from "lucide-react";
+import { LogIn, FileText, Building2, PackageCheck } from "lucide-react";
 import AnimatedSection from "./AnimatedSection";
 
 const steps = [
@@ -15,10 +15,16 @@ const steps = [
     desc: "Fill out a quick form describing your lost or found item with details and a photo.",
   },
   {
-    icon: PackageCheck,
+    icon: Building2,
     step: "03",
+    title: "Drop Off at Union Front Desk",
+    desc: "If you found an item, bring it to the Student Union front desk for safe keeping.",
+  },
+  {
+    icon: PackageCheck,
+    step: "04",
     title: "Claim It",
-    desc: "Browse reported items, find yours, and submit a claim to get it back.",
+    desc: "Browse reported items, verify ownership, and pick it up from the Union front desk.",
   },
 ];
 
@@ -28,14 +34,14 @@ const SolutionSection = () => (
       <AnimatedSection className="text-center mb-16">
         <span className="text-sm font-semibold text-accent uppercase tracking-wider">How It Works</span>
         <h2 className="font-display text-3xl md:text-5xl font-bold text-foreground mt-3 mb-4">
-          Three Simple Steps to <span className="gold-accent">Reconnect</span>
+          Four Simple Steps to <span className="gold-accent">Reconnect</span>
         </h2>
         <p className="text-muted-foreground max-w-xl mx-auto text-lg">
           UIS LostConnect makes it effortless to report, match, and recover lost items on campus.
         </p>
       </AnimatedSection>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-5xl mx-auto">
         {steps.map((s, i) => (
           <AnimatedSection key={s.step} delay={i * 0.15}>
             <div className="relative bg-card rounded-2xl p-8 card-elevated border border-border text-center">
