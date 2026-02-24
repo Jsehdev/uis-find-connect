@@ -1,9 +1,8 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { Upload, Send } from "lucide-react";
+import { Send } from "lucide-react";
 import AnimatedSection from "./AnimatedSection";
 
-const categories = ["ID Card", "Keys", "Laptop", "Bag/Backpack", "Phone", "Wallet", "Other"];
 const locations = ["Brookens Library", "PAC", "Student Union", "HSB", "UHB", "BRK", "Parking Lot", "Other"];
 
 const ReportForm = () => {
@@ -73,69 +72,29 @@ const ReportForm = () => {
                   />
                 </div>
 
-                {type === "found" ? (
-                  /* FOUND ITEM: Name, Category, Location */
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-                    <div>
-                      <label className="block text-sm font-medium text-foreground mb-1.5">Category</label>
-                      <select
-                        required
-                        className="w-full rounded-xl border border-input bg-background px-4 py-3 text-sm text-foreground focus:outline-none focus:ring-2 focus:ring-ring"
-                      >
-                        <option value="">Select category</option>
-                        {categories.map((c) => (
-                          <option key={c} value={c}>{c}</option>
-                        ))}
-                      </select>
-                    </div>
-                    <div>
-                      <label className="block text-sm font-medium text-foreground mb-1.5">Location</label>
-                      <select
-                        required
-                        className="w-full rounded-xl border border-input bg-background px-4 py-3 text-sm text-foreground focus:outline-none focus:ring-2 focus:ring-ring"
-                      >
-                        <option value="">Select location</option>
-                        {locations.map((l) => (
-                          <option key={l} value={l}>{l}</option>
-                        ))}
-                      </select>
-                    </div>
-                  </div>
-                ) : (
-                  /* LOST ITEM: Name, Location, Description, Upload Image */
-                  <>
-                    <div>
-                      <label className="block text-sm font-medium text-foreground mb-1.5">Location</label>
-                      <select
-                        required
-                        className="w-full rounded-xl border border-input bg-background px-4 py-3 text-sm text-foreground focus:outline-none focus:ring-2 focus:ring-ring"
-                      >
-                        <option value="">Select location</option>
-                        {locations.map((l) => (
-                          <option key={l} value={l}>{l}</option>
-                        ))}
-                      </select>
-                    </div>
+                {/* Location - both forms */}
+                <div>
+                  <label className="block text-sm font-medium text-foreground mb-1.5">Location</label>
+                  <select
+                    required
+                    className="w-full rounded-xl border border-input bg-background px-4 py-3 text-sm text-foreground focus:outline-none focus:ring-2 focus:ring-ring"
+                  >
+                    <option value="">Select location</option>
+                    {locations.map((l) => (
+                      <option key={l} value={l}>{l}</option>
+                    ))}
+                  </select>
+                </div>
 
-                    <div>
-                      <label className="block text-sm font-medium text-foreground mb-1.5">Description</label>
-                      <textarea
-                        rows={3}
-                        placeholder="Describe the item in detail..."
-                        className="w-full rounded-xl border border-input bg-background px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring resize-none"
-                      />
-                    </div>
-
-                    <div>
-                      <label className="block text-sm font-medium text-foreground mb-1.5">Upload Image</label>
-                      <label className="flex flex-col items-center justify-center w-full h-28 rounded-xl border-2 border-dashed border-input bg-background cursor-pointer hover:border-primary/40 transition-colors">
-                        <Upload className="w-6 h-6 text-muted-foreground mb-1" />
-                        <span className="text-sm text-muted-foreground">Click to upload</span>
-                        <input type="file" accept="image/*" className="hidden" />
-                      </label>
-                    </div>
-                  </>
-                )}
+                {/* Description - both forms */}
+                <div>
+                  <label className="block text-sm font-medium text-foreground mb-1.5">Description</label>
+                  <textarea
+                    rows={3}
+                    placeholder="Describe the item in detail..."
+                    className="w-full rounded-xl border border-input bg-background px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring resize-none"
+                  />
+                </div>
 
                 <button
                   type="submit"
