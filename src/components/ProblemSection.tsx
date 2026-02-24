@@ -230,9 +230,10 @@ const ProblemSection = () => {
                           {selectedItem.type === "found" ? "When did you lose it?" : "When did you find it?"}
                         </label>
                         <input
-                          type="date"
+                          type="text"
                           value={claimDate}
                           onChange={(e) => setClaimDate(e.target.value)}
+                          placeholder="e.g. Feb 20, 2025"
                           className="w-full rounded-xl border border-input bg-card px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring"
                         />
                       </div>
